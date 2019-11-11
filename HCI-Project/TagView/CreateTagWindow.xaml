@@ -1,0 +1,56 @@
+﻿<Window x:Class="HCI_Project.TagView.CreateTagWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Project.TagView"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:val="clr-namespace:HCI_Project.Validation"
+        mc:Ignorable="d"
+        Title="New Tag" Height="380" Width="270">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1.25*" />
+            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="2.5*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Label Name="TLstep1" Content="Create a New Tag" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        <StackPanel Name="SPid" Grid.Row="1">
+            <Label Content="Name/ID :"></Label>
+            <TextBox Name="TBid" Margin="10,0">
+                <TextBox.Text>
+                    <Binding Path="Id" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <val:MustBeFilledValidationRule />
+                            <val:UniqueTagValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="TBid"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+        </StackPanel>
+        <StackPanel Name="SPcolour" Grid.Row="2">
+            <Label Content="Colour:"></Label>
+            <xctk:ColorPicker Name="ColorPicker" Margin="10,0" Opened="ColorPicker_Opened"></xctk:ColorPicker>
+            <Label Name="ColorError" Content="Please choose a colour." Foreground="Red" Margin="10,0,0,0" Visibility="Hidden"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Label Content="Description:" />
+            <TextBox Name="TBDesc" Text="{Binding Path=Description}" Margin="10,0" Height="75"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <Button  Name="CancelButton" Content="Cancel" Width="75" Height="30" Margin="15 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CancelButton_Click"/>
+            <Button  Name="ConfirmButton" Content="Confirm" Width="75" Height="30" Margin="80,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ConfirmButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

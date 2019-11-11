@@ -1,0 +1,29 @@
+﻿<Window x:Class="HCI_Project.Login.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Project.Login"
+        mc:Ignorable="d"
+        Title="Log In Screen" Height="250" Width="250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.25*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="The Festival App" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"></Label>
+        <Label Name="LabelError" Content="Unknown username or password." Grid.Row="1" Foreground="Red" FontSize="8" VerticalAlignment="Center" Visibility="Hidden"/>
+        <Label Content="Username:" Grid.Row="2" VerticalAlignment="Bottom"></Label>
+        <TextBox Name="TBUsername" Grid.Row="3" VerticalAlignment="Top" Margin="10,0"></TextBox>
+        <Label Content="Password:" Grid.Row="4" VerticalAlignment="Bottom"></Label>
+        <PasswordBox Name="PassBox" Grid.Row="5" VerticalAlignment="Top" Margin="10,0"></PasswordBox>
+
+        <Button Name="ButtonLogin" Content="Log In" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Width="50" Click="ButtonLogin_Click" IsDefault="True"></Button>
+    </Grid>
+</Window>
